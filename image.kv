@@ -21,7 +21,7 @@ WindowManager:
 <WindowExit>:
     title: "EXIT APP"
     size_hint: .4, .4   
-    # auto_dismiss: False
+    auto_dismiss: False
     title_align: "center"
     title_font: "font2" 
     title_size: 25
@@ -44,7 +44,7 @@ WindowManager:
                 font_size: 25
                 font_name: "font2"
                 color: (0,0,0)
-                on_release: root.cancel_popup()
+                on_release: root.cancel()
             RoundedButtonContent:
                 id: eixt_app
                 text: "Exit"
@@ -168,8 +168,8 @@ WindowManager:
         padding: 10
         FileChooser:
             id: filechooser
+            font_name: "font2"
             FileChooserIconLayout
-                font_name: "font2"
         BoxLayout:
             size_hint: (1, 0.1)
             pos_hint: {'center_x': .5, 'center_y': .5}
@@ -180,6 +180,7 @@ WindowManager:
                 font_size: 25
                 font_name: "font2"
                 color: (0,0,0)
+                on_release: root.cancel()
             RoundedButtonContent:
                 id: ldbtn
                 text: "Load"
@@ -1011,7 +1012,7 @@ WindowManager:
                 font_size: 30
                 font_name: "font2"
                 pos_hint: {'center_x': 0.5,'center_y': 0.5}
-                on_press: root.closing(filechooser.selection)
+                on_press: root.closing()
                 border:(16,16,16,16)
             RoundedButtonFifth:
                 text: "HOME"

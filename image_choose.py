@@ -29,13 +29,12 @@ class WindowManager(ScreenManager):
 class FirstScreen(Screen):
     def open_popup(self):
         self.the_popup = WindowExit()
-        content_exit = NotificationExitApp()
+        content_exit = NotificationExitApp(cancel=self.cancel)
         self.the_popup.add_widget(content_exit)
         self.the_popup.open()
 
-    def CloseApp(self):
-        content_exit = NotificationExitApp()
-        content_exit.exit_app()
+    def cancel(self):
+        self.the_popup.dismiss()
         pass
     pass
 
@@ -45,15 +44,13 @@ class WindowExit(Popup):
 
 
 class NotificationExitApp(FloatLayout):
+    cancel = ObjectProperty()
 
     def exit_app(self):
         App.get_running_app().stop()
         Window.close()
     pass
 
-    def cancel_popup(self):
-        self.the_popup_exit = WindowExit()
-        self.the_popup_exit.dismiss()
     pass
 
 
@@ -74,12 +71,7 @@ class Content4(FloatLayout):
 
 class Content6(FloatLayout):
     load = ObjectProperty()
-
-    def cancel_popup(self):
-        self.the_popup_exit = WindowPopup()
-        self.the_popup_exit.dismiss()
-        print("cancel")
-    pass
+    cancel = ObjectProperty()
 
 
 class WindowPopup(Popup):
@@ -693,18 +685,22 @@ class FifthScreen(Screen):
             self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
             self.count += 1
 
-    def closing(self, filename):
+    def closing(self):
         DirPath = ".\images"
         Files = os.listdir(DirPath)
         for File in Files:
             imgPath = os.path.join(DirPath, File)
-            if (os.path.abspath(imgPath) == filename[0]):
+            if (os.path.abspath(imgPath) == self.file_path5):
                 img = cv.imread(imgPath, 0)
         n = 255
-        imgB = cv.threshold(img, self.threshval, n, cv.THRESH_BINARY)
-        closing = cv.morphologyEx(imgB, cv.MORPH_CLOSE, self.kenrel)
-        cv.imwrite("new_image.jpg", closing)
-        self.ids.new_image5.source = "new_image.jpg"
+        retval, imgB = cv.threshold(img, self.threshval, n, cv.THRESH_BINARY)
+        if (self.kernel.all() == 0) or (self.kernel.all() == None):
+            self.open_popup_check()
+        else:
+            closing = cv.morphologyEx(imgB, cv.MORPH_CLOSE, self.kernel)
+            cv.imwrite("new_image" + str(self.count) + ".jpg", closing)
+            self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
+            self.count += 1
     pass
 
 
@@ -888,6 +884,8 @@ class Seventh(Screen):
         DirPath_NewImage = ".\\new_img"
         Files_NewImage = os.listdir(DirPath_NewImage)
         self.delete_new_img(DirPath_NewImage, Files_NewImage)
+        self.ids.my_image7.source = "image3.png"
+        self.ids.new_image7.source = "image3.png"
 
     def delete_new_img(self, DirPath_NewImage, Files_NewImage):
         for f in Files_NewImage:
@@ -895,9 +893,12 @@ class Seventh(Screen):
 
     def open_popup(self):
         self.the_popup7 = WindowPopup()
-        content = Content6(load=self.load)
+        content = Content6(load=self.load, cancel=self.cancel)
         self.the_popup7.add_widget(content)
         self.the_popup7.open()
+
+    def cancel(self):
+        self.the_popup7.dismiss()
 
     def load(self, selection):
         self.file_path7 = str(selection[0])
