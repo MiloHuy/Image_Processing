@@ -1,0 +1,1414 @@
+#:import Factory kivy.factory.Factory
+WindowManager:
+    FirstScreen:
+    SecondScreen:
+    InformMySelf:
+    ThirdScreen:
+    FourthScreen:
+    FifthScreen:
+    Sixth:
+    Seventh:
+
+<WindowPopup>:
+    title: "CHOOSE A FILE IMAGE"
+    size_hint: .8, .8
+    # auto_dismiss: False
+    title_align: "center"
+    title_font: "font2"
+    title_size: 25
+    
+
+<WindowExit>:
+    title: "EXIT APP"
+    size_hint: .4, .4   
+    # auto_dismiss: False
+    title_align: "center"
+    title_font: "font2" 
+    title_size: 25
+
+<NotificationExitApp>:
+    BoxLayout:
+        orientation: 'vertical'     
+        spacing: 10
+        pos_hint: {"center_x":0.5,"center_y": 0.5}
+        Label:
+            text: "Are u sure to exit app"
+            font_size: 30
+            font_name: "font2"
+        BoxLayout:
+            size_hint: (1, 0.4)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+            RoundedButtonContent:
+                text: "Cancel"
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.cancel_popup()
+            RoundedButtonContent:
+                id: eixt_app
+                text: "Exit"
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.exit_app()
+
+<WindowCheck>:
+    title: "NOTE"
+    size_hint: .8, .8
+    # auto_dismiss: False
+    title_align: "center"
+    title_font: "font2"
+    title_size: 25
+    
+    
+<Content_Check>:
+    BoxLayout:
+        orientation: 'vertical'     
+        spacing: 10
+        pos_hint: {"center_x":0.5,"center_y": 0.5}
+        Label:
+            text: "Please choose kernel"
+            font_size: 30
+            font_name: "font2"
+        RoundedButtonContent:
+            id: eixt_app
+            text: "OKE"
+            font_size: 25
+            font_name: "font2"
+            color: (0,0,0)
+            on_release: root.dismiss()
+
+<Content1>:
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba:(87/255,98/255,77/255,1)
+            Rectangle:
+                size: root.width,root.height
+                pos:self.pos
+        orientation: "vertical"
+        pos_hint: {"center_x":0.5,"center_y": 0.5}
+        spacing: 10
+        padding: 10
+        FileChooser:
+            id: filechooser
+            FileChooserIconLayout
+                font_name: "font2"
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+            RoundedButtonContent:
+                text: "Cancel"
+                # on_release: root.cancel_popup()
+                on_release: root.dismiss()
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+            RoundedButtonContent:
+                id: ldbtn
+                text: "Load"
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.load(filechooser.selection)
+                disabled: True if filechooser.selection==[] else False
+
+<Content4>:
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba:(65/255,93/255,67/225,1)
+            Rectangle:
+            # source: "background_purple.png"
+                size: root.width,root.height
+                pos:self.pos
+        orientation: "vertical"
+        pos_hint: {"center_x":0.5,"center_y": 0.5}
+        spacing: 10
+        padding: 10
+        FileChooser:
+            id: filechooser
+            font_name: "font2"
+            FileChooserIconLayout
+                font_name: "font2"
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+            RoundedButtonContent:
+                text: "Cancel"
+                on_press: Factory.WindowPopup().dismiss()
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.cancel()
+            RoundedButtonContent:
+                id: ldbtn
+                text: "Load"
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.load(filechooser.selection)
+                disabled: True if filechooser.selection==[] else False
+            
+<Content6>:
+    BoxLayout:
+        canvas.before:
+            Color:
+                rgba:(91/255,140/255,155/225,1)
+            Rectangle:
+            # source: "background_purple.png"
+                size: root.width,root.height
+                pos:self.pos
+        orientation: "vertical"
+        pos_hint: {"center_x":0.5,"center_y": 0.5}
+        spacing: 10
+        padding: 10
+        FileChooser:
+            id: filechooser
+            FileChooserIconLayout
+                font_name: "font2"
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+            RoundedButtonContent:
+                text: "Cancel"
+                on_press: Factory.WindowPopup().dismiss()
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+            RoundedButtonContent:
+                id: ldbtn
+                text: "Load"
+                font_size: 25
+                font_name: "font2"
+                color: (0,0,0)
+                on_release: root.load(filechooser.selection)
+                disabled: True if filechooser.selection==[] else False
+
+<RoundedButtonContent@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (161/255,204/255,165/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+
+<FirstScreen>:
+    name: "first"
+    id: my_widget1
+    canvas.before:
+        Rectangle:
+            source: "background.jpg"
+            size: root.width,root.height  
+            pos:self.pos
+    # BoxLayout:
+    #     orientation: "vertical"
+    #     size: root.width/2,root.height/2
+    #     pos_hint: {"center_x": 0.5,"center_y": 0.84}
+    #     padding: 10
+    Label:
+        text: "IMAGE PROCESSING"
+        color: (64/255,82/255,137/255,1)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        font_size: 70
+        font_name: "font2"
+        bold: True
+        pos_hint: {"center_x":0.5,"center_y":0.83}
+    RoundedButtonInformMySelf:
+        text:"INFORM MYSELF"
+        outline_color: (243/255,246/255,244/255)
+        size_hint: 0.4,0.15
+        outline_width: 3
+        font_size: 40
+        font_name: "font2"
+        pos_hint: {"center_x":0.5,"center_y":0.7}
+        color: (0,0,0)
+        bold: True
+        on_press: 
+            app.root.current = "Inform_MySelf"
+            root.manager.transition.direction = "left"
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        size_hint: (1,None)
+        size: root.width,root.height - 100
+        pos_hint: {"center_x":0.66,"center_y":0.2}
+        # padding: 140
+        spacing: 20
+        GridLayout:
+            cols: 4
+            spacing: 35
+            size_hint: .7,.7
+            padding: 50
+            # pos_hint:{"center_x":0.5,"center_y":0.45}
+            RoundedButton:
+                text:"EXERCISE 1"
+                size_hint: .1,.1
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                bold: True
+                # pos_hint: {"center_x":0.5,"center_y":0.55}
+                on_press: 
+                    app.root.current = "second"
+                    root.manager.transition.direction = "left"
+            RoundedButton2:
+                text:"EXERCISE 2"
+                size_hint: .2,.05
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold: True
+                # pos_hint: {"center_x":0.5,"center_y":0.35}
+                on_press: 
+                    app.root.current = "third"
+                    root.manager.transition.direction = "left"
+            RoundedButton1_3:
+                text:"EXERCISE 3"
+                size_hint: .2,.1
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold: True
+                # pos_hint: {"center_x":0.5,"center_y":0.35}
+                on_press: 
+                    app.root.current = "fourth"
+                    root.manager.transition.direction = "left"
+            RoundedButton1_4:
+                text:"EXERCISE 4"
+                size_hint: .2,.1
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold: True
+                # pos_hint: {"center_x":0.5,"center_y":0.35}
+                on_press: 
+                    app.root.current = "fifth"
+                    root.manager.transition.direction = "left"
+            RoundedButton5:
+                text:"EXERCISE 5"
+                size_hint: .2,.1
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                bold: True
+                pos_hint: {"center_x":0.5,"center_y":0.5}
+                on_press: app.root.current = "sixth"
+            RoundedButton6:
+                text:"EXERCISE 6"
+                size_hint: .2,.1
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                bold: True
+                pos_hint: {"center_x":0.5,"center_y":0.5}
+                on_press: 
+                    app.root.current = "sevent"
+                    root.manager.transition.direction = "left"
+            RoundedButton7:
+                text:"EXERCISE 7"
+                size_hint: .2,.1
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                bold: True
+                pos_hint: {"center_x":0.5,"center_y":0.5}
+                outline_width: 3
+                on_press: root.CloseApp()
+            RoundedButton8:
+                text:"EXIT"
+                size_hint: .2,.1
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                font_size: 30
+                font_name: "font2"
+                color: (0,0,0)
+                bold: True
+                pos_hint: {"center_x":0.5,"center_y":0.5}
+                on_press: root.open_popup()
+<RoundedButton@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (161/255,204/255,165/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButtonInformMySelf@Button>
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		# Color:
+		# 	rgba: (14/255,28/255,38/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton2@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (143/255,185/255,150/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton3@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (222/255,181/255,215/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton1_3@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (112/255,151/255,117/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]          
+<RoundedButton1_4@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (65/255,93/255,67/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]   
+<RoundedButton5@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (161/255,204/255,165/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton6@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (143/255,185/255,150/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton7@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (112/255,151/255,117/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<RoundedButton8@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (65/255,93/255,67/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<InformMySelf>:
+    name: "Inform_MySelf"
+    id: my_widgetInform
+    canvas.before:  
+        # Color:
+        #     rgba: (251/255,194/255,235/255,1)
+        Rectangle:
+            source:"ImformMySelf.png"
+            size: root.width,root.height
+            pos: self.pos
+    Button:
+        background_color: 0,0,0,0
+        font_size: 15
+        size_hint: 0.1,0.1
+        on_press: 
+            app.root.current = "first" 
+            root.manager.transition.direction = "right"
+        Image:
+            source:"home.png"
+            pos:self.pos
+            allow_stretch: True
+<SecondScreen>:
+    name: "second"
+    id: my_widget2
+    canvas.before:
+        # Color:
+        #     rgba: (246/255,211/255,101/255,1)
+        Rectangle:
+            source: "backgroundsecondscreen.png"
+            size: root.width,root.height
+            pos:self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width,root.height
+        padding: 5
+        spacing: 20
+        GridLayout:
+            cols: 3
+            padding: 5
+            spacing: 5
+            Image:
+                id: my_image
+                size: 100,100
+                allow_stretch: True
+                pos_hint: {'center_x': 0.5,'center_y': 0.5,"top":0.2}
+                source: "backgroundsecondscreen_1.png"
+            Image:
+                id: new_image
+                source: "backgroundsecondscreen_2.png"
+                size_hint: 0.9,0.7
+                allow_stretch: True
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        RoundedButtonSecond:
+            text:"CHOOSE FILE"
+            size_hint: 0.1,0.1
+            color: (0,0,0)
+            outline_color: (243/255,246/255,244/255)
+            outline_width: 3
+            bold:True
+            font_size: 40
+            font_name: "font2"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_press: 
+                root.open_popup()
+        GridLayout:
+            cols:3
+            padding: 100
+            spacing: 5
+            RoundedButtonSecond:
+                text:"CLEAR"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 40
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.ClearImage()
+            RoundedButtonSecond:
+                text:"CONVERT TO GRAY"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 40
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.ConverGrayImage()
+            RoundedButtonSecond:
+                text:"ROTATE IMAGE"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 40
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.RotateImage()
+        RoundedButtonSecond:
+            text: "Go Back Home"
+            color: (0,0,0)
+            outline_color: (243/255,246/255,244/255)
+            outline_width: 3
+            size_hint: 0.3,0.3
+            bold:True
+            font_size: 40
+            font_name: "font2"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_press: 
+                app.root.current = "first"
+                root.manager.transition.direction = "right"
+                root.Reset()
+            border:(16,16,16,16)
+<RoundedButtonSecond@Button>:
+	background_color:(0,0,0,0)
+	canvas.before:
+		Color:
+			rgba: (254/255,230/255,134/225,1)
+		RoundedRectangle:
+            # source: "gradient.png"
+			size: self.size
+			pos: self.pos
+			radius: [30]
+        
+<ThirdScreen>:
+    name: "third"
+    id: my_widget3
+    canvas.before:
+        Color:
+		    rgba: (208/255,224/255,227/225,1)
+        Rectangle:
+            size: root.width,root.height
+            pos:self.pos
+    GridLayout:
+        cols:2
+        size: root.width - 300,root.height - 400
+        pos_hint: {'center_x': 0.5,'center_y': 0.8}
+        padding: 40
+        spacing: 10
+        Image:
+            id: my_image3
+            size_hint: 0.4,0.4
+            source: "image3.png"
+        Image:
+            id: new_image3
+            source: "image3.png"
+            size_hint: 0.4,0.4
+    FileChooserIconView:
+        id:filechooser
+        pos_hint: {'center_x': 0.5,'center_y': 0.04}
+        color: (1,1,1,1)
+        font_name: "font2"
+        spacing: 20
+        canvas.before:
+            Color: 
+                rgba: (118/255,165/255,175/225,1)
+            RoundedRectangle:
+                size: root.width,160
+                pos: 5,520
+                radius: [30]
+        on_selection:my_widget3.selected(filechooser.selection)
+    ScrollView:
+        do_scroll_x: True
+        do_scroll_y: False
+        size_hint: (1,None)
+        height: 1000
+        size: root.width - 200,root.height - 500
+        pos_hint: {"center_x":0.52,"center_y":0.1}
+        GridLayout:
+            cols:20
+            padding: 5
+            size_hint:2.5,0.3
+            spacing: 20
+            RoundedButtonThird:
+                text: "IMAGE_NEGATIVE"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.ImageNegative(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "LOG_TRANSFORMATION"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.LogTransformation(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "POWER_LAW"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.PowerLaw(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "MIN_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.MinFilter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "MAX_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.MaxFilter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "MAX_MIN_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Max_Min_Filter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "MIDPOINT_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.MidPoint_Filter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "AVERAGE_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Average_Filter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "MEDIAN_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Median_Filter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "GAUSSIAN_FILTER"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Median_Filter(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonThird:
+                text: "HOME"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.2,0.1
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.05}
+                on_press: 
+                    app.root.current = "first"
+                    root.manager.transition.direction = "right"
+                    root.Reset()
+                border:(16,16,16,16)
+
+<FourthScreen>:
+    name: "fourth"
+    id: my_widget4
+    canvas.before:
+        Rectangle:
+            source: "background4.png"
+            size: root.width,root.height
+            pos:self.pos
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width,root.height
+        padding: 5
+        spacing: 20
+        GridLayout:
+            cols: 2
+            padding: 5
+            spacing: 5
+            Image:
+                id: my_image4
+                size: 100,100
+                allow_stretch: True
+                pos_hint: {'center_x': 0.5,'center_y': 0.5,"top":0.2}
+                source: "backgroundscreen_1_4.png"
+            Image:
+                id: new_image4
+                source: "backgroundscreen_2_4.png"
+                size_hint: 0.9,0.7
+                allow_stretch: True
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+        FileChooserIconView:
+            id:filechooser
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            font_name: "font2"
+            canvas.before:
+                # Color:
+                #     rgba: (253/255,160/255,133/225,1)
+                RoundedRectangle:
+                    source: "button4.png"
+                    size: root.width - 10,190
+                    pos: 0,0
+                    radius:[30]
+            on_selection:my_widget4.selected(filechooser.selection)
+        GridLayout:
+            cols:3
+            padding: 70
+            spacing: 20
+            RoundedButtonFourth:
+                text:"IDEAL_LOWPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.Ideal_LowPass(filechooser.selection)
+            RoundedButtonFourth:
+                text:"BUTTERWORTH_LOWPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.ButterWorth_LowPass(filechooser.selection)
+                text:"GAUSSIAN_LOWPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.Gaussian_LowPass(filechooser.selection)
+            RoundedButtonFourth:
+                text:"IDEAL_HIGHPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.Ideal_HighPass(filechooser.selection)
+            RoundedButtonFourth:
+                text:"BUTTERWORTH_HIGHPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.ButterWorth_HighPass(filechooser.selection)
+            RoundedButtonFourth:
+                text:"GAUSSIAN_HIGHPASS"
+                size_hint: 0.1,0.1
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                bold:True
+                font_size: 25
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: 
+                    root.Gaussian_HighPass(filechooser.selection)
+    Button:
+        background_color: 0,0,0,0
+        size_hint: 0.1,0.1
+        on_press: 
+            app.root.current = "first" 
+            root.manager.transition.direction = "right"
+            root.Reset()
+        Image:
+            source:"home.png"
+            pos:self.pos
+            size_hint:0.1,0.05
+            allow_stretch: True
+
+
+<RoundedButtonFourth@Button>:
+	background_color:(0,0,0,0)
+	canvas.before:
+		Color:
+			rgba: (14/255,28/255,38/225,1)
+		RoundedRectangle:
+            # source: "button4.png"
+			size: self.size
+			pos: self.pos
+			radius: [30]
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width,root.height
+        padding: 5
+        spacing: 20
+        GridLayout:
+            cols: 3
+            padding: 5
+            spacing: 5
+            Image:
+                id: my_image
+                size: 100,100
+                allow_stretch: True
+                pos_hint: {'center_x': 0.5,'center_y': 0.5,"top":0.2}
+                source: "backgroundsecondscreen_1.png"
+<FifthScreen>:
+    name: "fifth"
+    id: my_widget5
+    slider_text: silder_label
+    canvas.before:
+        Color:
+            rgba:(65/255,93/255,67/225,1)
+        Rectangle:
+            # source: "background_purple.png"
+            size: root.width,root.height
+            pos:self.pos
+    GridLayout:
+        cols:2
+        size: root.width - 300,root.height - 400
+        pos_hint: {'center_x': 0.5,'center_y': 0.8}
+        padding: 40
+        spacing: 10
+        Image:
+            id: my_image5
+            size_hint: 0.4,0.4
+            source: "image5.png"
+        Image:
+            id: new_image5
+            source: "image5.png"
+            size_hint: 0.4,0.4
+    RoundedButtonFifth:
+        text: "CHOOSE FILE"
+        color: (0,0,0)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x':0.5,'center_y':0.35}
+        on_press: root.open_popup()
+        border:(16,16,16,16)
+    ScrollView:
+        do_scroll_x: True
+        do_scroll_y: False
+        size_hint: (1,None)
+        height: 1000
+        size: root.width - 200,root.height - 500
+        pos_hint: {"center_x":0.52,"center_y":0.1}
+        GridLayout:
+            cols:20
+            padding: 2
+            size_hint:1.2,0.3
+            spacing: 20
+            RoundedButtonFifth:
+                text: "EROSION"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 30
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Erosion()
+                border:(16,16,16,16)
+            RoundedButtonFifth:
+                text: "DILATION"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 30
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.Delation()
+                border:(16,16,16,16)
+            RoundedButtonFifth:
+                text: "OPENNING"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 30
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.openning(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonFifth:
+                text: "CLOSING"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.5,0.5
+                bold:True
+                font_size: 30
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                on_press: root.closing(filechooser.selection)
+                border:(16,16,16,16)
+            RoundedButtonFifth:
+                text: "HOME"
+                color: (0,0,0)
+                outline_color: (243/255,246/255,244/255)
+                outline_width: 3
+                size_hint: 0.2,0.1
+                bold:True
+                font_size: 30
+                font_name: "font2"
+                pos_hint: {'center_x': 0.5,'center_y': 0.05}
+                on_press: 
+                    app.root.current = "first"
+                    root.manager.transition.direction = "right"
+                    root.Reset()
+                border:(16,16,16,16)
+    Label:
+        id: silder_label
+        text: "Threshval: 0"
+        font_size: 20
+        pos_hint: {"center_x":0.2,"center_y":0.09}
+        font_name: "font2"
+    Slider:
+        id:slider_ex4
+        min:0
+        max:255
+        step: 1
+        size_hint:0.3,0.2
+        on_value:root.slide_it(*args)
+        orientation:"horizontal"
+        pos_hint: {"center_x":0.2,"center_y":0.06}
+        cursor_image: "cursor.jpg"
+        cursor_height: 30
+        cursor_background: (0,0,0)
+    GridLayout:
+        cols:6
+        pos_hint: {"center_x":0.72,"center_y":0.06}
+        size_hint: 0.5,0.2
+        Label:
+            text:"k1 = 6x6"
+            font_size: 30
+            font_name:"font2" 
+        CheckBox:
+            on_active:root.checkbox_click(self,self.active,"k1 = 6x6")
+        Label:
+            text:"k2 = 11x11"
+            font_size: 30
+            font_name:"font2" 
+        CheckBox:
+            on_active:root.checkbox_click(self,self.active,"k2 = 11x11")
+        Label:
+            text:"k3 = 15x15"
+            font_size: 30
+            font_name:"font2" 
+        CheckBox:
+            on_active:root.checkbox_click(self,self.active,"k3 = 15x15")
+        
+
+<RoundedButtonThird@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (118/255,165/255,175/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+
+<RoundedButtonFifth@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (35/255,51/255,41/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+<Sixth>:
+    name: "sixth"
+    id: my_widget6
+    canvas.before:
+        Color:
+            rgba:(255,255,255,1)
+        Rectangle:
+            # source: "background_purple.png"
+            size: root.width,root.height
+            pos:self.pos
+    # GridLayout:
+    #     cols:2
+    #     size: root.width - 300,root.height - 400
+    #     pos_hint: {'center_x': 0.5,'center_y': 0.8}
+    #     padding: 40
+    #     spacing: 10
+    #     Image:
+    #         id: my_image6
+    #         size_hint: 0.4,0.4
+    #         source: "imageshape.png"
+    #     Image:
+    #         id: new_image6
+    #         source: "image5.png"
+    #         size_hint: 0.4,0.4
+    RoundedButtonSix:
+        text: "DRAW SHAPE"
+        color: (0,0,0)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x': 0.5,'center_y': 0.2}
+        on_press: root.draw_shape()
+        border:(16,16,16,16)
+    RoundedButtonSix:
+        text: "BOUNDARY IMAGE"
+        color: (0,0,0)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x': 0.28,'center_y': 0.2}
+        on_press: root.Boundary()
+        border:(16,16,16,16)
+    RoundedButtonSix:
+        text: "FILLING SHAPE"
+        color: (0,0,0)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x': 0.9,'center_y': 0.2}
+        on_press: root.holefilling()
+        border:(16,16,16,16)
+    RoundedButtonSix:
+        text: "SAVE IMAGE"
+        color: (0,0,0)
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x': 0.73,'center_y': 0.2}
+        on_press: root.export_img()
+        border:(16,16,16,16)
+    RoundedButtonSix:
+        text: "HOME"
+        color: (0,0,0) 
+        outline_color: (243/255,246/255,244/255)
+        outline_width: 3
+        size_hint: 0.2,0.1
+        bold:True
+        font_size: 30
+        font_name: "font2"
+        pos_hint: {'center_x': 0.5,'center_y': 0.05}
+        on_press: 
+            app.root.current = "first"
+            root.manager.transition.direction = "right"
+            root.Reset()
+        border:(16,16,16,16)
+
+<RoundedButtonSix@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+	canvas.before:
+		Color:
+			rgba: (35/255,51/255,41/225,1) if self.state == "normal" else (71/255,116/255,27/255,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30]
+
+<Paint>:
+    FloatLayout:
+        id: box
+        orientation: "vertical"
+        size: root.width,root.height
+        Image:
+            id: img
+            source: "Black.jpg"
+            size_hint: 1,0.7 #Chieu dai, chieu rong
+            pos_hint: {"center_x": 0.5,"center_y": 0.7}
+            allow_stretch:  True
+            keep_ratio: False
+        Image:
+            id: img2
+            source: "Black.jpg"
+            size_hint: 1,0.7
+            pos_hint: {"center_x": 0.5,"center_y": 0.7}
+            allow_stretch: True
+            keep_ratio: False
+
+<Seventh>:
+    name: "sevent"
+    id: my_widget7
+    slider_text: silder_label
+    canvas.before:
+        Color:
+		    rgba: (208/255,224/255,227/225,1)
+        Rectangle:
+            size: root.width,root.height
+            pos:self.pos
+    GridLayout:
+        cols:2
+        size: 200,200
+        pos_hint: {'center_x': 0.5,'center_y': 0.95}
+        # pos: self.pos
+        padding: 5
+        spacing: 10
+        Label:
+            id: label_img_ori
+            text: "Image Original"
+            color: (0,0,0,1)
+            # pos: 0,100
+            font_size: 25
+            font_name: "font2"
+        Label:
+            id: label_img_after
+            text: "Image After"
+            color: (0,0,0,1)
+            # pos_hint: {"center_x":0.6,"center_y":0.6}
+            font_size: 25
+            font_name: "font2"
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width,root.height
+        pos: 0,-50
+        padding: 0
+        spacing: 15
+        GridLayout:
+            cols:2
+            size: root.width - 300,root.height - 400
+            pos_hint: {'center_x': 0.5,'center_y': 0.8}
+            padding: 5
+            spacing: 10
+            Image:
+                id: my_image7
+                size_hint: 0.4,0.4
+                source: "image3.png"
+                allow_stretch: True
+                keep_ratio: False
+            Image:
+                id: new_image7
+                source: "image3.png"
+                size_hint: 0.4,0.8
+                allow_stretch: True
+                keep_ratio: False
+        # FileChooserIconView:
+        #     id:filechooser
+        #     pos_hint: {'center_x': 0.5,'center_y': 0.04}
+        #     font_name: "font2"
+        #     spacing: 20
+        #     canvas.before:
+        #         Color: 
+        #             rgba: (118/255,165/255,175/225,1)
+        #         RoundedRectangle:
+        #             size: root.width,210
+        #             # pos: 5,520
+        #             radius: [30]
+        #     on_selection:my_widget7.selected(filechooser.selection)
+        RoundedButtonSevent:
+            text: "CHOOSE FILE"
+            color: (0,0,0)
+            outline_color: (243/255,246/255,244/255)
+            outline_width: 3
+            size_hint: 0.2,0.2
+            bold:True
+            font_size: 25
+            font_name: "font2"
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            on_press: root.open_popup()
+            border:(16,16,16,16)
+        ScrollView:
+            do_scroll_x: True
+            do_scroll_y: False
+            size_hint: (1,None)
+            edge_damping: 0.5
+            height: 1000
+            size: root.width - 200,root.height - 500
+            pos_hint: {"center_x":0.52,"center_y":0.1}
+            GridLayout:
+                cols:20
+                padding: 5
+                size_hint:2.5,0.3
+                spacing: 20
+                RoundedButtonSevent:
+                    text: "LINE DETECTION"
+                    color: (0,0,0)
+                    outline_color: (243/255,246/255,244/255)
+                    outline_width: 3
+                    size_hint: 0.5,0.5
+                    bold:True
+                    font_size: 25
+                    font_name: "font2"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    on_press: root.line_detection()
+                    border:(16,16,16,16)
+                RoundedButtonSevent:
+                    text: "EDGE DETECTION"
+                    color: (0,0,0)
+                    outline_color: (243/255,246/255,244/255)
+                    outline_width: 3
+                    size_hint: 0.5,0.5
+                    bold:True
+                    font_size: 25
+                    font_name: "font2"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    on_press: root.edge_detection()
+                    border:(16,16,16,16)
+                RoundedButtonSevent:
+                    text: "ADAPTIVE THRESHOLDING"
+                    color: (0,0,0)
+                    outline_color: (243/255,246/255,244/255)
+                    outline_width: 3
+                    size_hint: 0.5,0.5
+                    bold:True
+                    font_size: 25
+                    font_name: "font2"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    on_press: root.thresholding()
+                    border:(16,16,16,16)
+                RoundedButtonSevent:
+                    text: "OPTIMUM THRESHOLDING"
+                    color: (0,0,0)
+                    outline_color: (243/255,246/255,244/255)
+                    outline_width: 3
+                    size_hint: 0.5,0.5
+                    bold:True
+                    font_size: 25
+                    font_name: "font2"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+                    on_press: root.optimum_thresholding()
+                    border:(16,16,16,16)
+                SmothButtonSevent:
+                    text: "HOME"
+                    color: (0,0,0)
+                    outline_color: (243/255,246/255,244/255)
+                    outline_width: 3
+                    size_hint: 0.2,0.1
+                    bold:True
+                    font_size: 25
+                    font_name: "font2"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.05}
+                    on_press: 
+                        app.root.current = "first"
+                        root.manager.transition.direction = "right"
+                        root.Reset()
+                    border:(16,16,16,16)
+    Label:
+        id: silder_label
+        text: "Threshval: 0"
+        color: (0,0,0,1)
+        pos_hint: {"center_x":0.2,"center_y":0.09}
+        font_size: 25
+        font_name: "font2"
+    Slider:
+        id:slider_ex7
+        min:0
+        max:255
+        step: 1
+        size_hint:0.3,0.2
+        on_value:root.slide_it(*args)
+        orientation:"horizontal"
+        pos_hint: {"center_x":0.2,"center_y":0.06}
+        cursor_image: "cursor.jpg"
+        cursor_height: 30
+        cursor_background: (0,0,0)
+
+<RoundedButtonSevent@Button>:
+	background_color:(0,0,0,0)
+	background_normal: ""
+    border_radius: 18
+    back_color: (1,0,1,1)
+    bold: True
+    color: self.back_color  
+	canvas.before:
+		Color:
+			rgba: (36/255,47/255,61/225,1) if self.state == "normal" else (143/255,185/255,150/225,1)
+        Line:
+            rounded_rectangle: (self.pos[0],self.pos[1],self.size[0],self.size[1],self.border_radius)
+            width: 2
+<SmothButtonSevent@Button>:
+    background_color:(0,0,0,0)
+	background_normal: ""
+    back_color: (1,0,1,1)
+	canvas.before:
+		Color:
+			# rgba: (36/255,47/255,61/225,1) if self.state == "normal" else (143/255,185/255,150/225,1)
+            rgba: (255,255,255,1) if self.state == "normal" else (143/255,185/255,150/225,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [30,2,30,2]
+    
