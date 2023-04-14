@@ -572,7 +572,7 @@ class FifthScreen(Screen):
     file_path5 = StringProperty("No file chosen")
     the_popup5 = ObjectProperty(None)
     the_popup_check = ObjectProperty(None)
-    kernel = 0
+    kernel = np.zeros((3, 3), np.uint8)
     threshval = 0
     Active = False
     count = 0
@@ -613,11 +613,11 @@ class FifthScreen(Screen):
     def checkbox_click(self, instance, value, topping):
         if (value == True):
             if (topping == "k1 = 6x6"):
-                self.kenrel = np.ones((6, 6), np.uint8)
+                self.kernel = np.ones((6, 6), np.uint8)
             elif (topping == "k2 = 11x11"):
-                self.kenrel = np.ones((11, 11), np.uint8)
+                self.kernel = np.ones((11, 11), np.uint8)
             elif (topping == "k3 = 15x15"):
-                self.kenrel = np.ones((15, 15), np.uint8)
+                self.kernel = np.ones((15, 15), np.uint8)
         print("False")
         pass
 
@@ -645,10 +645,11 @@ class FifthScreen(Screen):
             n = 255
             retval, imgB = cv.threshold(
                 img, self.threshval, n, cv.THRESH_BINARY)
-            if self.kernel == None:
+            if (self.kernel.all() == 0) or (self.kernel.all() == None):
                 self.open_popup_check()
             else:
-                img_ero1 = cv.erode(imgB, self.kenrel, iterations=1)
+                print("Kernel : " + str(self.kernel))
+                img_ero1 = cv.erode(imgB, self.kernel, iterations=1)
                 cv.imwrite("new_image" + str(self.count) + ".jpg", img_ero1)
                 self.ids.new_image5.source = "new_image" + \
                     str(self.count) + ".jpg"
