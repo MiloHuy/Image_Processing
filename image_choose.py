@@ -676,19 +676,22 @@ class FifthScreen(Screen):
             self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
             print(self.count)
 
-    def openning(self, filename):
+    def openning(self):
         DirPath = ".\images"
         Files = os.listdir(DirPath)
         for File in Files:
             imgPath = os.path.join(DirPath, File)
-            if (os.path.abspath(imgPath) == filename[0]):
+            if (os.path.abspath(imgPath) == self.file_path5):
                 img = cv.imread(imgPath, 0)
         n = 255
-        imgB = cv.threshold(img, self.threshval, n, cv.THRESH_BINARY)
-        openning = cv.morphologyEx(imgB, cv.MORPH_OPEN, self.kenrel)
-        cv.imwrite("new_image" + str(self.count) + ".jpg", openning)
-        self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
-        self.count += 1
+        retval, imgB = cv.threshold(img, self.threshval, n, cv.THRESH_BINARY)
+        if (self.kernel.all() == 0) or (self.kernel.all() == None):
+            self.open_popup_check()
+        else:
+            openning = cv.morphologyEx(imgB, cv.MORPH_OPEN, self.kernel)
+            cv.imwrite("new_image" + str(self.count) + ".jpg", openning)
+            self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
+            self.count += 1
 
     def closing(self, filename):
         DirPath = ".\images"
