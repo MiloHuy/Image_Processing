@@ -668,10 +668,13 @@ class FifthScreen(Screen):
                 img = cv.imread(imgPath, 0)
         n = 255
         retval, imgB = cv.threshold(img, self.threshval, n, cv.THRESH_BINARY)
-        img_ero1 = cv.dilate(imgB, self.kenrel, iterations=1)
-        cv.imwrite("new_image" + str(self.count) + ".jpg", img_ero1)
-        self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
-        print(self.count)
+        if (self.kernel.all() == 0) or (self.kernel.all() == None):
+            self.open_popup_check()
+        else:
+            img_ero1 = cv.dilate(imgB, self.kernel, iterations=1)
+            cv.imwrite("new_image" + str(self.count) + ".jpg", img_ero1)
+            self.ids.new_image5.source = "new_image" + str(self.count) + ".jpg"
+            print(self.count)
 
     def openning(self, filename):
         DirPath = ".\images"
